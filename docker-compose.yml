@@ -4,9 +4,11 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_USER: root
       MYSQL_DATABASE: root
     ports:
-      - "3306:3306"
+      - "4306:3306"
 
   web:
     build: .
