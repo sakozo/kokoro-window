@@ -8,11 +8,11 @@
           
   .messages
     - @users.each do |user|
-      = user.name + EmotionChoices.find(@users[0].emotions.last[:emotion]).name + StatusChoices.find(user.emotions.last[:status]).name
+      = user.name+"さん" + "  気分は?" + EmotionChoices.find(@users[0].emotions.last[:emotion]).name + "  今？" + StatusChoices.find(user.emotions.last[:status]).name + user.emotions.last[:created_at].to_s
 
   .form-area
     = form_with model: @emotion, local:true do |f|
-      = f.label :今の気持ちは？ do
-        = f.collection_select :emotion, EmotionChoices.all, :id, :name, prompt: "気持ち", class:'select-box'
-        = f.collection_select :status, StatusChoices.all, :id, :name, prompt: "ステータス", class:'select-box'
+      = f.label :emotion, "How are you?"
+      = f.collection_select :emotion, EmotionChoices.all, :id, :name, prompt: "気持ち", class:'select-box'
+      = f.collection_select :status, StatusChoices.all, :id, :name, prompt: "ステータス", class:'select-box'
       = f.submit "登録", class: 'btn'
