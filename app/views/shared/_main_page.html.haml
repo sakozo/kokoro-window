@@ -7,6 +7,12 @@
           Member : 
           
   .messages
+    - @users.each do |user|
+      = user.name + EmotionChoices.find(@users[0].emotions.last[:emotion]).name + StatusChoices.find(user.emotions.last[:status]).name
 
   .form-area
-    
+    = form_with model: @emotion, local:true do |f|
+      = f.label :今の気持ちは？ do
+        = f.collection_select :emotion, EmotionChoices.all, :id, :name, prompt: "気持ち", class:'select-box'
+        = f.collection_select :status, StatusChoices.all, :id, :name, prompt: "ステータス", class:'select-box'
+      = f.submit "登録", class: 'btn'
