@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル洗い出し
+https://gyazo.com/c2cc890c8db7f5c3a4bbe64312f760eb
