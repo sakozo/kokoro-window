@@ -6,5 +6,6 @@ class User < ApplicationRecord
   has_many :groups,through: :group_users
   has_many :emotions
   has_many :diaries
+  has_many :records
   has_one_attached :icon
 end
