@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_023552) do
+ActiveRecord::Schema.define(version: 2020_05_03_080904) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 2020_05_03_023552) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "location"
+    t.integer "weather"
+    t.integer "temp"
+    t.integer "pressure"
+    t.integer "happy_level"
+    t.integer "stress_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -85,4 +98,5 @@ ActiveRecord::Schema.define(version: 2020_05_03_023552) do
   add_foreign_key "emotions", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "records", "users"
 end
