@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @diary = Diary.new
+
+    @record = Record.new
+
+    #環境変数をJSに渡す
+    gon.wheather_api_key = ENV['OPEN_WEATHER_API_KEY']
   end
 
   def edit
