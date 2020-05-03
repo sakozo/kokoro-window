@@ -10,3 +10,11 @@
       = icon('fas', 'image')
       = f.file_field :icon, style: "display: none;", class: 'icon_file_field'
     = f.submit 'Send', class: 'icon-btn', disabled: true
+
+= form_with model: @diary, local: true, id: "" do |form|
+  = form.text_area :diary, placeholder: "日記を書く（日記は暗号化されて保存されます）"
+  = form.submit "完了!", id: "btn"
+
+- if @user.diaries.exists?
+  - @user.diaries.each do |diary|
+    = diary.diary
