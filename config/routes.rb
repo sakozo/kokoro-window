@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :groups, only: [:new, :create, :edit, :update]
   resources :emotions, only: [:create]
+  resources :diaries, only: [:create]
 end

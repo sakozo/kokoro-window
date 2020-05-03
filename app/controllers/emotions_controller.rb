@@ -1,7 +1,7 @@
 class EmotionsController < ApplicationController
   def create
-    @emotion = Emotion.new(emotion_params)
-    if @emotion.save
+    emotion = Emotion.new(emotion_params)
+    if emotion.save
       redirect_to root_path
     else
       
