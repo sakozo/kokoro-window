@@ -18,3 +18,14 @@
 - if @user.diaries.exists?
   - @user.diaries.each do |diary|
     = diary.diary
+
+
+#weather
+
+= form_with model: @record, local:true do |f|
+  = f.label :record, "記録しましょう"
+  - if current_user.records.exists?
+    = f.collection_select :location, Prefecture.all, :id, :name, selected: current_user.records.last.location, class:'prefecture-select-box'
+  - else
+    = f.collection_select :location, Prefecture.all, :id, :name, selected: 'tokyo', class:'prefecture-select-box'
+  = f.submit "記録", class: 'btn'
