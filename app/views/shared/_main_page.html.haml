@@ -5,11 +5,19 @@
       %ul
         .header__active-group__member-list
           Member : 
-          
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
   .messages
     - @users.each do |user|
       = link_to user_path(user.id), class: "" do
-        = user.name+"さん" + "  気分は?" + EmotionChoices.find(@users[0].emotions.last[:emotion]).name + "  今？" + StatusChoices.find(user.emotions.last[:status]).name + user.emotions.last[:created_at].to_s
+        .user
+          - if user.icon.attached? # アタッチされた画像が存在する場合
+            = image_tag user.icon, class: 'icon', height:50, width:50
+          - else  # アタッチされた画像がない場合デフォルト画像を表示
+            = image_tag "material/icon/icon.jpg", class: "icon", height:50, width:50
+          - if user.emotions.exists?
+            = user.name+  "さん" + "  気分は?" + EmotionChoices.find(user.emotions.last[:emotion]).name + "  今？" + StatusChoices.find(user.emotions.last[:status]).name + user.emotions.last[:created_at].to_s
+          - else
+            = user.name + "さん"
 
   .form-area
     = form_with model: @emotion, local:true do |f|
